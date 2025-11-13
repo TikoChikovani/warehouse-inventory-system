@@ -1,8 +1,8 @@
 package com.example.service;
 
-import com.example.dto.InventoryResponse;
-import com.example.dto.OrderRequest;
-import com.example.dto.OrderResponse;
+import com.example.dto.response.InventoryResponse;
+import com.example.dto.request.OrderRequest;
+import com.example.dto.response.OrderResponse;
 import com.example.model.Order;
 import com.example.model.Product;
 import lombok.RequiredArgsConstructor;
