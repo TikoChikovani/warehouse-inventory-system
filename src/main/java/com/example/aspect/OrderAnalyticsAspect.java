@@ -1,10 +1,11 @@
 package com.example.aspect;
 
-import com.example.dto.OrderRequest;
-import com.example.dto.OrderResponse;
+import com.example.dto.request.OrderRequest;
+import com.example.dto.response.OrderResponse;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
 
@@ -26,6 +27,7 @@ public class OrderAnalyticsAspect {
     private final ConcurrentHashMap<String, Double> revenueByProduct = new ConcurrentHashMap<>();
     private final AtomicLong totalRevenue = new AtomicLong(0);
 
+    @Around("execution(* com.example.service.OrderService.createOrder(..))")
     public Object trackOrderCreation(ProceedingJoinPoint joinPoint) throws Throwable {
         long startTime = System.currentTimeMillis();
         totalOrders.incrementAndGet();
